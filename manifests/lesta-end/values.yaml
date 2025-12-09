@@ -20,7 +20,7 @@ ingress:
 
 env: 
   - name: FLASK_ENV
-    value: production
+    value: app:app
 
 secrets: 
   - name: DATABASE_URL
