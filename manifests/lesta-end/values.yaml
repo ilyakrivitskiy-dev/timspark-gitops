@@ -1,0 +1,27 @@
+replicaCount: 1
+
+image:
+  repository: me1vin/lesta-end
+  tag: 0.0.1
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  hosts:
+    - host: lesta-end.app
+      paths:
+        - path: /
+          pathType: Prefix
+
+env:
+  - name: APP_ENV
+    value: production
+
+secrets:
+  - name: DATABASE_URL
+    secretName: lesta-db-secret
+    secretKey: DATABASE_URL
