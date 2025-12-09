@@ -16,6 +16,7 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+  tls: []
 
 env: 
   - name: FLASK_ENV
