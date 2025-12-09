@@ -18,6 +18,8 @@ spec:
         - name: lesta-end
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 5000
           env:
             {{- range .Values.env }}
             - name: {{ .name }}
@@ -30,5 +32,3 @@ spec:
                   name: {{ .secretName }}
                   key: {{ .secretKey }}
             {{- end }}
-          ports:
-            - containerPort: 5000

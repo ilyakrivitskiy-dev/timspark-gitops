@@ -17,11 +17,11 @@ ingress:
         - path: /
           pathType: Prefix
 
-env:
-  - name: APP_ENV
+env: 
+  - name: FLASK_ENV
     value: production
 
-secrets:
+secrets: 
   - name: DATABASE_URL
     secretName: lesta-db-secret
     secretKey: DATABASE_URL
