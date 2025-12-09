@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "lesta-end.fullname" . }}
+  name: {{ include "lesta-end.fullname" $ }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -16,7 +16,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ include "lesta-end.fullname" $. }}
+                name: {{ include "lesta-end.fullname" $ }}
                 port:
                   number: 80
           {{- end }}
