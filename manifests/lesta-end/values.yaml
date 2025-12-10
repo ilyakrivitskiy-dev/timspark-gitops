@@ -25,4 +25,4 @@ env:
 secrets: 
   - name: SQLALCHEMY_DATABASE_URI
     secretName: lesta-db-secret
-    secretKey: DATABASE_URL
+    secretKey: SQLALCHEMY_DATABASE_URI
