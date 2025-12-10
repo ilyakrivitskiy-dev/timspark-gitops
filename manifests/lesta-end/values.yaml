@@ -16,7 +16,10 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
-  tls: []
+  tls: 
+    - hosts:
+        - lesta-end.app
+      secretName: lesta-end-tls
 
 env: 
   - name: FLASK_APP
