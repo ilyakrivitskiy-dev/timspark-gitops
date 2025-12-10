@@ -1,34 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "lesta-end.fullname" . }}
+  name: lesta-end
+  namespace: app
   labels:
-    app: {{ include "lesta-end.name" . }}
+    app: lesta-end
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app: {{ include "lesta-end.name" . }}
+      app: lesta-end
   template:
     metadata:
       labels:
-        app: {{ include "lesta-end.name" . }}
+        app: lesta-end
     spec:
       containers:
         - name: lesta-end
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: me1vin/lesta-end:0.0.1
           ports:
             - containerPort: 5000
           env:
-            {{- range .Values.env }}
-            - name: {{ .name }}
-              value: {{ .value | quote }}
-            {{- end }}
-            {{- range .Values.secrets }}
-            - name: {{ .name }}
+            - name: SQLALCHEMY_DATABASE_URI
               valueFrom:
                 secretKeyRef:
-                  name: {{ .secretName }}
-                  key: {{ .secretKey }}
-            {{- end }}
+                  name: lesta-db-secret
+                  key: SQLALCHEMY_DATABASE_URI
+      restartPolicy: Always
