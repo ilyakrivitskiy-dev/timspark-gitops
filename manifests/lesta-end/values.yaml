@@ -11,15 +11,30 @@ service:
 
 ingress:
   enabled: true
+  className: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
   hosts:
     - host: lesta-end.app
       paths:
         - path: /
           pathType: Prefix
-  tls: 
-    - hosts:
+  tls:
+    - secretName: lesta-end-tls     # cert-manager создаст сам
+      hosts:
         - lesta-end.app
-      secretName: lesta-end-tls
+
+#ingress:
+#  enabled: true
+#  hosts:
+#    - host: lesta-end.app
+#      paths:
+#        - path: /
+#          pathType: Prefix
+#  tls: 
+#    - hosts:
+#        - lesta-end.app
+#      secretName: lesta-end-tls
 
 env: 
   - name: FLASK_APP
