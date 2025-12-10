@@ -22,10 +22,10 @@ spec:
             - containerPort: 5000
           env:
             - name: FLASK_APP
-              value: app:app
-            - name: SQLALCHEMY_DATABASE_URI
+              value: routes:app
+            - name: DB_URL
               valueFrom:
                 secretKeyRef:
                   name: lesta-db-secret
-                  key: DATABASE_URL
+                  key: DB_URL
       restartPolicy: Always

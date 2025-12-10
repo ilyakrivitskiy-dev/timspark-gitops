@@ -20,9 +20,9 @@ ingress:
 
 env: 
   - name: FLASK_APP
-    value: app:app
+    value: routes:app
 
 secrets: 
-  - name: SQLALCHEMY_DATABASE_URI
+  - name: DB_URL
     secretName: lesta-db-secret
-    secretKey: DATABASE_URL
+    secretKey: DB_URL
